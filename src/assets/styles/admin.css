@@ -1,0 +1,55 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+	margin: 10px auto;
+	padding: 10px;
+	background-color: #99f5e9;
+	border-radius: 12px;
+}
+
+.personal_info {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 19px;
+	font-weight: bold;
+}
+
+.personal_info span {
+	transform: rotate(0);
+	transition: all 0.5s ease;
+}
+
+.personal_info span:hover {
+	transform: rotate(-90deg);
+	background-color: #65afa5;
+}
+
+.container .hidden > p {
+	visibility: hidden;
+	height: 10px;
+	opacity: 0;
+	transition: height 0.4s, opacity 0.6s ease-in-out;
+}
+
+/* .hidden:hover > p {
+	height: 100px;
+	visibility: visible;
+	opacity: 1;
+} */
+
+.container:hover .hidden > p {
+	height: 100px;
+	visibility: visible;
+	opacity: 1;
+}
+
+.medical_info {
+	display: block;
+	height: 100px;
+}
+
+.arrow {
+	z-index: 99;
+}

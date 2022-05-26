@@ -1,17 +1,13 @@
-import React, { useEffect, useContext } from "react"
+import { useEffect } from "react"
 import { apiUrl } from "../../datahelpers/apiURL"
 import { getDataList } from "../../crud/getDataList"
 import { useState } from "react"
 import LanguageSelector from "../LanguageSelector"
-import { adminContext } from "./context/adminContext"
-import { adminTypes } from "../../datahelpers/types"
+import { UrgenciasList } from "./UrgenciasList"
+import "../../assets/styles/admin.css"
 
 export const AdminHome = () => {
 	const [data1, setData1] = useState()
-
-	const { state, dispatch } = useContext(adminContext)
-
-	console.log(state)
 
 	// context.dispatch()
 
@@ -28,14 +24,11 @@ export const AdminHome = () => {
 					<h1 className='home-title-left'>Administración</h1>
 					<hr />
 				</div>
-				<br />
-				<br />
-				<h2>Emergencias por tramitar:</h2>
 
-				<br />
-				<br />
+				<h2>Emergencias por tramitar:</h2>
+				<UrgenciasList />
 			</section>
-			{data1 && data1.ok && (
+			{/* {data1 && data1.ok && (
 				<table border='1' style={{ border: "none" }}>
 					<thead>
 						<tr>
@@ -170,7 +163,7 @@ export const AdminHome = () => {
 						))}
 					</tbody>
 				</table>
-			)}
+			)} */}
 		</div>
 	)
 }

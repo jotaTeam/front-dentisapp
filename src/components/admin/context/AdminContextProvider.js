@@ -1,4 +1,6 @@
 import { useReducer, useEffect } from "react"
+import { getDataList } from "../../../crud/getDataList"
+import { apiUrl } from "../../../datahelpers/apiURL"
 import { adminTypes } from "../../../datahelpers/types"
 import { adminReducer } from "../reducer/adminReducer"
 import { adminContext } from "./adminContext"
@@ -31,14 +33,36 @@ const adminObject = {
 const initValue = () => {}
 
 const AdminContextProvider = ({ children }) => {
-	const [adminInfo, dispatch] = useReducer(adminReducer, {}, initValue)
+	const [adminInfo, dispatch] = useReducer(adminReducer, adminObject, initValue)
 
 	useEffect(() => {
-		console.log("el use effect del provider")
-		dispatch({
-			type: adminTypes.setInitInfo,
-			payload: adminObject,
-		})
+		async function fetchData() {
+			const data = await getDataList(apiUrl.emergency)
+
+			dispatch({
+				type: adminTypes.setInitInfo,
+				payload: data,
+			})
+		}
+
+		fetchData()
+		// getDataList(apiUrl.emergency).then(response => {
+		// 	// const { emergency } = response
+		// 	const { data } = response
+
+		// 	const { emergency } = data
+
+		// 	const emergencyList = {
+		// 		emergencies: {
+		// 			...emergency,
+		// 		},
+		// 	}
+
+		// 	dispatch({
+		// 		type: adminTypes.setInitInfo,
+		// 		payload: emergencyList,
+		// 	})
+		// })
 	}, [])
 
 	return (
