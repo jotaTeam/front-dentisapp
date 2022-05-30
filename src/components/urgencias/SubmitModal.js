@@ -16,16 +16,40 @@ const customStyles = {
 if (process.env.NODE_ENV !== "test") {
   Modal.setAppElement("#root");
 }
-export const SubmitModal = ({ modalOpen, setModalOpen, emergencyData }) => {
+export const SubmitModal = ({ modalOpen, setModalOpen, emergencyData}) => {
   const [data, setData] = useState({ loading: true, error: null, data: {} });
   const closeModal = () => {
     console.log("Fuiiiira");
   };
 
   const dispatchCreat = async () => {
-    const resp = await createData(emergencyData.current, apiUrl.emergency);
+ 
+    if (emergencyData.current) {
+   const resp = await createData(emergencyData.current, apiUrl.emergency);
+
 
     setData(resp);
+
+    }else {
+
+      const {appoinment, personalData, treatments} = emergencyData;
+
+
+      const sendData = {...appoinment, ...personalData, ...treatments};
+
+
+      console.log(sendData);
+
+    const resp = await createData(sendData, apiUrl.appointment);
+
+
+
+    setData(resp);
+
+    }
+
+
+
   };
 
   const handleCloseModal = () => {

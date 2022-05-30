@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { FormattedMessage } from "react-intl";
 import { SubmitModal } from '../urgencias/SubmitModal';
 import { DateCalendar } from './DateCalendar';
 import { PersonalDataDate } from './PersonalDataDate';
 import { Treatements } from './Treatements';
+import { AppointmentContext } from "./Appointment.context";
 export const CitaPreviaForm = () => {
 
   const [position, setPosition] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+
+const { AppoinmentValues } = useContext(AppointmentContext);
 
   const mockData = {};
   //FORM COMPONENTS
@@ -23,7 +26,7 @@ export const CitaPreviaForm = () => {
     />
 ];
 const onHandleNext = (e) => {
-    setPosition(position + 1);
+    setPosition(position + 1); 
 }
 const onHandlePrev = (e) => {
     setPosition(position - 1);
@@ -31,7 +34,7 @@ const onHandlePrev = (e) => {
 const onSubmitHandle = (e) => {
     e.preventDefault();
 
-    console.log('submit');
+    console.log('desde form: ' +  AppoinmentValues);
       
 };
 
@@ -106,7 +109,7 @@ const handleModal = () => {
                          
                       </div>
                     }
-                    <SubmitModal modalOpen={modalOpen} setModalOpen={setModalOpen} emergencyData={mockData} />
+                    <SubmitModal modalOpen={modalOpen} setModalOpen={setModalOpen} emergencyData={AppoinmentValues} />
         </form>
 
     </div>
