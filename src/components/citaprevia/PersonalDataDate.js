@@ -73,7 +73,7 @@ export const PersonalDataDate = () => {
                 type="text"
                 onChange={handleInputChange}
                 value={surname}
-                name="surnames"
+                name="lastName"
                 required
             />
         </section>   
