@@ -3,8 +3,8 @@ import { adminTypes } from "../../../datahelpers/types"
 export const adminReducer = (state = {}, action) => {
 	const { type, payload } = action
 
-	console.log(type)
-	console.log(payload)
+	// console.log(type)
+	// console.log(payload)
 
 	switch (action.type) {
 		case adminTypes.setInitInfo:

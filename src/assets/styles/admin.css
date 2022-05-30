@@ -1,9 +1,56 @@
+.home {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.title-cont {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 5em;
+}
+
+.title {
+	font-size: 40px;
+	text-align: center;
+	color: #119f95;
+}
+
+@media (min-width: 768px) {
+	.title {
+		font-size: 66px;
+	}
+}
+
+.dashboard {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 5em;
+}
+.dashboard-container {
+	margin: 0 2em;
+	background-color: white;
+	padding: 2em;
+	border-radius: 12px;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard h2 {
+	font-size: 25px;
+	text-align: center;
+	color: #119f95;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;
 	width: 350px;
-	margin: 10px auto;
-	padding: 10px;
+	margin: 10px auto 10px auto;
 	background-color: #99f5e9;
 	border-radius: 12px;
 }
@@ -18,17 +65,17 @@
 
 .personal_info span {
 	transform: rotate(0);
-	transition: all 0.5s ease;
+	transition: all 0.5s ease-in-out;
 }
 
 .personal_info span:hover {
 	transform: rotate(-90deg);
-	background-color: #65afa5;
+	/* background-color: #65afa5; */
 }
 
 .container .hidden > p {
 	visibility: hidden;
-	height: 10px;
+	height: 0px;
 	opacity: 0;
 	transition: height 0.4s, opacity 0.6s ease-in-out;
 }
