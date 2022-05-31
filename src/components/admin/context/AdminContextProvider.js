@@ -36,34 +36,27 @@ const AdminContextProvider = ({ children }) => {
 	const [adminInfo, dispatch] = useReducer(adminReducer, adminObject, initValue)
 
 	useEffect(() => {
-		async function fetchData() {
-			const data = await getDataList(apiUrl.emergency)
-
+		fetchDataToInitContext().then(data => {
 			dispatch({
 				type: adminTypes.setInitInfo,
 				payload: data,
 			})
-		}
-
-		fetchData()
-		// getDataList(apiUrl.emergency).then(response => {
-		// 	// const { emergency } = response
-		// 	const { data } = response
-
-		// 	const { emergency } = data
-
-		// 	const emergencyList = {
-		// 		emergencies: {
-		// 			...emergency,
-		// 		},
-		// 	}
-
-		// 	dispatch({
-		// 		type: adminTypes.setInitInfo,
-		// 		payload: emergencyList,
-		// 	})
-		// })
+		})
 	}, [])
+
+	async function fetchDataToInitContext() {
+		const alldata = await Promise.allSettled([
+			getDataList(apiUrl.emergency),
+			getDataList(apiUrl.appointment),
+		])
+		const emergency = alldata[0].value.data
+		const appointment = alldata[1].value.data
+
+		return {
+			emergency,
+			appointment,
+		}
+	}
 
 	return (
 		<adminContext.Provider value={{ adminInfo, dispatch }}>

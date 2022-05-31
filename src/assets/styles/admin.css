@@ -55,6 +55,15 @@
 	border-radius: 12px;
 }
 
+.container-checked {
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+	margin: 10px auto 10px auto;
+	background-color: #f5d099;
+	border-radius: 12px;
+}
+
 .personal_info {
 	display: flex;
 	justify-content: space-around;

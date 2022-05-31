@@ -7,7 +7,7 @@ export const CitasList = () => {
 	const { adminInfo } = context
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [info, setInfo] = useState(false)
-	const emergencies = adminInfo?.data.emergency
+	const emergencies = adminInfo?.appointment.appointment
 
 	useEffect(() => {
 		if (typeof adminInfo !== "undefined") {
