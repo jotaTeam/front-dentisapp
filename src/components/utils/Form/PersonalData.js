@@ -1,6 +1,6 @@
 import { FormattedMessage, useIntl } from "react-intl";
 
-export const PersonalData = ({handleInputChange, formData}) => {
+export const PersonalData = ({handleInputChange, formData, validation}) => {
     
     const intl = useIntl();
 
@@ -21,6 +21,7 @@ export const PersonalData = ({handleInputChange, formData}) => {
                     />
                 </label>
                 <input
+                    className = {`${validation.name === false ? "nonvalid": ""}`}
                     placeholder={intl.formatMessage({id: 'form.placeName'})}
                     type="text"
                     onChange={handleInputChange}
@@ -38,10 +39,11 @@ export const PersonalData = ({handleInputChange, formData}) => {
                     />
                 </label>
                 <input
+                    className = {`${validation.surnames === false ? "nonvalid": ""}`}
                     placeholder={intl.formatMessage({id: 'form.placeLastname'})}
                     type="text"
                     onChange={handleInputChange}
-                    value={formData.surname}
+                    value={formData.surnames}
                     name="surnames"
                     required
                 />
@@ -57,6 +59,7 @@ export const PersonalData = ({handleInputChange, formData}) => {
 
                 </label>
                 <input
+                    className = {`${validation.dni === false ? "nonvalid": ""}`}
                     placeholder={intl.formatMessage({id: 'form.placeDNI'})}
                     type="text"
                     onChange={handleInputChange}
@@ -74,10 +77,11 @@ export const PersonalData = ({handleInputChange, formData}) => {
                     />
                 </label>
                 <input
+                    className = {`${validation.phone === false ? "nonvalid": ""}`}
                     placeholder={intl.formatMessage({id: 'form.placePhone'})}
                     type="text"
                     onChange={handleInputChange}
-                    value={formData.telephone}
+                    value={formData.phone}
                     name="phone"
                     required
                 />
