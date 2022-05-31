@@ -1,3 +1,5 @@
+import { updateData } from "../../../crud/updateData"
+import { apiUrl } from "../../../datahelpers/apiURL"
 import { adminTypes } from "../../../datahelpers/types"
 
 export const adminReducer = (state = {}, action) => {
@@ -19,8 +21,18 @@ export const adminReducer = (state = {}, action) => {
 				...action.payload,
 			}
 		case adminTypes.checkEmergency:
+			//TODO call to api and update
+			const { appointment, emergency } = action.payload.adminInfo
+			const { id, state, index } = action.payload
+			const checked = {
+				checked: !state,
+			}
+			updateData(checked, id, apiUrl.emergency)
+
+			emergency.emergency[index].checked = !state
 			return {
-				...action.payload,
+				appointment,
+				emergency,
 			}
 		case adminTypes.closeEmergency:
 			return {

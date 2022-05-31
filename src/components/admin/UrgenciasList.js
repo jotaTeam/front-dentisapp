@@ -3,13 +3,14 @@ import { adminContext } from "./context/adminContext"
 import { BiLeftArrow } from "react-icons/bi"
 
 import MedicalInfo from "./MedicalInfo"
+import { adminTypes } from "../../datahelpers/types"
 
 export const UrgenciasList = () => {
 	const context = useContext(adminContext)
-	const { adminInfo } = context
+	const { adminInfo, dispatch } = context
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [info, setInfo] = useState(false)
-	const emergencies = adminInfo?.data.emergency
+	const emergencies = adminInfo?.emergency.emergency
 
 	useEffect(() => {
 		if (typeof adminInfo !== "undefined") {
@@ -21,16 +22,30 @@ export const UrgenciasList = () => {
 		setInfo(!info)
 	}
 
+	const handleCheck = (index, id, state) => {
+		dispatch({
+			type: adminTypes.checkEmergency,
+			payload: {
+				adminInfo,
+				index,
+				id,
+				state,
+			},
+		})
+	}
+
 	return (
 		isLoaded &&
-		emergencies.map(e => (
-			<div key={e.name} className='container'>
+		emergencies.map((e, index) => (
+			<div
+				key={e.name}
+				className={e.checked ? "container-checked" : "container"}>
 				<div className='personal_info'>
 					<input
 						type={"checkbox"}
 						checked={e.checked}
 						onChange={() => {
-							console.log(e.id)
+							handleCheck(index, e.id, e.checked)
 						}}
 					/>
 					<div>
