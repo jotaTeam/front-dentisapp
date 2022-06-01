@@ -754,6 +754,21 @@ svg{
       }
 }
 
+.nonvalid {
+        position: relative;
+        animation: shake .1s linear;
+        animation-iteration-count: 3;
+        border-color: #691b1b !important;
+        background-color: #ffdddd !important;
+      border-width: 3px;
+    }
+    
+    @keyframes shake {
+        0% { left: -5px; }
+        100% { right: -5px; }
+    }
+
+
 
 /* @media screen and (max-width:580px){
     .mouth-separate{
