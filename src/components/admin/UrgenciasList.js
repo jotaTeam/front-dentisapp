@@ -12,6 +12,8 @@ export const UrgenciasList = () => {
 	const [info, setInfo] = useState(false)
 	const emergencies = adminInfo?.emergency.emergency
 
+	console.log(emergencies)
+
 	useEffect(() => {
 		if (typeof adminInfo !== "undefined") {
 			setIsLoaded(true)
@@ -58,7 +60,7 @@ export const UrgenciasList = () => {
 					</span>
 				</div>
 
-				<MedicalInfo />
+				<MedicalInfo medicalInfo={e.medicalInfo} />
 			</div>
 		))
 	)

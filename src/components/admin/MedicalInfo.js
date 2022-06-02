@@ -1,17 +1,30 @@
 import React, { useState } from "react"
 
-const MedicalInfo = props => {
+const MedicalInfo = ({ medicalInfo }) => {
+	const { cause, simptom } = medicalInfo
+
+	const causes = Object.keys(cause).filter(property => cause[property] === true)
+	const simptoms = Object.keys(simptom).filter(
+		property => cause[property] === true
+	)
+	console.log(causes)
+
 	const [info, setInfo] = useState(false)
+
+	const anyProblem = causes.length > 0 || simptoms.length > 0
 
 	return (
 		<div
 			className={info ? "medical_info" : "hidden"}
 			onClick={() => setInfo(!info)}>
-			<p>
-				cosasd rarndodfkdjn que me vienen a la mente que cosas no aveces no miro
-				nada de lo quie es cribno pero bueno es algo cuasi normal un besito a
-				todes y a mimi
-			</p>
+			{!anyProblem && <p>Esta limpio</p>}
+
+			{anyProblem && (
+				<p>
+					{causes.length > 0 && causes.map(c => <p>{c}</p>)}
+					{simptoms.length > 0 && simptoms.map(s => <p>{s}</p>)}
+				</p>
+			)}
 		</div>
 	)
 }
