@@ -5,7 +5,7 @@ const MedicalInfo = ({ medicalInfo }) => {
 
 	const causes = Object.keys(cause).filter(property => cause[property] === true)
 	const simptoms = Object.keys(simptom).filter(
-		property => cause[property] === true
+		property => simptom[property] === true
 	)
 
 	const [info, setInfo] = useState(false)
@@ -18,12 +18,8 @@ const MedicalInfo = ({ medicalInfo }) => {
 			onClick={() => setInfo(!info)}>
 			{!anyProblem && <p>No problem here</p>}
 
-			{anyProblem && (
-				<p>
-					{causes.length > 0 && causes.map(c => <p>{c}</p>)}
-					{simptoms.length > 0 && simptoms.map(s => <p>{s}</p>)}
-				</p>
-			)}
+			{causes.length > 0 && causes.map(c => <p className='cause'>{c}</p>)}
+			{simptoms.length > 0 && simptoms.map(s => <p className='simptom'>{s}</p>)}
 		</div>
 	)
 }

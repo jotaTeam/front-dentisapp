@@ -1,6 +1,4 @@
-import { useContext, useEffect } from "react"
-import { apiUrl } from "../../datahelpers/apiURL"
-import { getDataList } from "../../crud/getDataList"
+import { useContext } from "react"
 import { useState } from "react"
 import LanguageSelector from "../LanguageSelector"
 import { UrgenciasList } from "./UrgenciasList"
