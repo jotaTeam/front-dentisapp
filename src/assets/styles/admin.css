@@ -1,3 +1,7 @@
+p {
+	text-align: center;
+}
+
 .home {
 	display: flex;
 	flex-direction: column;
@@ -21,27 +25,24 @@
 	margin-bottom: 1em;
 }
 
-
-
 .dashboard {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
 }
 .dashboard-container {
 	margin: 0 2em;
 	background-color: white;
 	padding: 2em;
 	border-radius: 12px;
-    --webkit-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+	--webkit-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
 	height: 480px;
 	width: 560px;
 	overflow-y: auto;
 	scrollbar-color: #1aacaa #dbe5eb;
-    scrollbar-width: 8px;
+	scrollbar-width: 8px;
 	cursor: pointer;
 }
 
@@ -96,7 +97,24 @@
 	visibility: hidden;
 	height: 0px;
 	opacity: 0;
-	transition: height 0.4s, opacity 0.6s ease-in-out;
+	transition: height 0.1s, opacity 0.6s ease;
+}
+
+.cause {
+	background-color: #f98c1752;
+	/* width: 150px; */
+	/* height: 30px; */
+	padding: 2px;
+	border-radius: 12px;
+	margin: 0.1em;
+}
+.simptom {
+	background-color: #df17f94c;
+	/* width: 150px;
+	height: 30px; */
+	padding: 2px;
+	border-radius: 12px;
+	margin: 0.1em;
 }
 
 /* .hidden:hover > p {
@@ -106,7 +124,8 @@
 } */
 
 .container:hover .hidden > p {
-	height: 100px;
+	height: 100%;
+	max-height: 100px;
 	visibility: visible;
 	opacity: 1;
 }
@@ -120,18 +139,17 @@
 	z-index: 99;
 }
 
-.admin-btn-cont{
+.admin-btn-cont {
 	display: flex;
 	width: 80%;
 	margin: auto;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-
 }
 
-.admin-btn{
-	margin:1em;
+.admin-btn {
+	margin: 1em;
 	background-color: #fff;
 	border-radius: 12px;
 	cursor: pointer;
@@ -144,40 +162,39 @@
 	width: 180px;
 }
 
-.admin-btn h1{
-	color:#119f95;
+.admin-btn h1 {
+	color: #119f95;
 	font-size: 20px;
 }
-.admin-btn:hover{
-	transform:scale(1.02) ;
+.admin-btn:hover {
+	transform: scale(1.02);
 }
 
-h1.quantity-alert{
+h1.quantity-alert {
 	color: #f98b17;
 	margin-left: 0.5em;
 }
 
-@media screen and (max-width:624px){
-
-	.title-admin{
+@media screen and (max-width: 624px) {
+	.title-admin {
 		width: 80%;
 		font-size: 28px;
 	}
-	.dashboard-container{
+	.dashboard-container {
 		width: 350px;
 	}
 
-	.container, .container-checked{
+	.container,
+	.container-checked {
 		width: 80%;
 	}
 
-	.admin-btn{
+	.admin-btn {
 		width: 80%;
 		margin: 0.2em;
 	}
 
-	.dashboard-container{
+	.dashboard-container {
 		margin: 1em 0 2em 0;
 	}
-	
 }
