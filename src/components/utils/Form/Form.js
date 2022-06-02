@@ -10,6 +10,7 @@ import '../../../assets/styles/form.css';
 import { PainLocation } from "./PainLocation";
 import { FormSummary } from "./FormSummary";
 import {SubmitModal} from "../../urgencias/SubmitModal";
+import { personalDataValidator } from "../validators/personalDataValidator";
 
 export const Form = () => {
 
@@ -35,6 +36,8 @@ export const Form = () => {
 
     const [active, setActive] = useState(prevState);
 
+    const [validation, setValidation] = useState({});
+
     const setTeeth = (activeTeeth) => {
         actTeeth.current = activeTeeth;
     }
@@ -44,6 +47,7 @@ export const Form = () => {
         <PersonalData
             formData={formData}
             handleInputChange={handleInputChange}
+            validation = {validation}
         />,
         <MedicalData
             formData={formData}
@@ -73,11 +77,14 @@ export const Form = () => {
     />
     ];
 
- 
-
 
     const onHandleNext = (e) => {
-        setPosition(position + 1);
+        let valid = personalDataValidator(formData);
+        setValidation(valid);
+        if(valid.name && valid.surnames && valid.dni && valid.phone){
+            setPosition(position + 1);
+        }    
+
     }
     const onHandlePrev = (e) => {
         setPosition(position - 1);
@@ -86,8 +93,7 @@ export const Form = () => {
 
     const onSubmitHandle = (e) => {
         e.preventDefault();
-        console.log(formData);
-
+       // console.log(formData);
         actTeeth.current.forEach((t, i) => {
                    if (t) {
                         teeth += `${i} `;
@@ -96,7 +102,7 @@ export const Form = () => {
         emergencyData.current = {...formData};
         emergencyData.current.pieces = teeth;
        // console.log(emergencyData);
-       console.log("probando: patologia =  " + formData.pathology + " alergia = " + formData.allergy)
+       //console.log("probando: patologia =  " + formData.pathology + " alergia = " + formData.allergy)
         
     };
 

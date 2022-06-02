@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { apiUrl } from "../../datahelpers/apiURL"
 import { getDataList } from "../../crud/getDataList"
 import { useState } from "react"
@@ -6,36 +6,64 @@ import LanguageSelector from "../LanguageSelector"
 import { UrgenciasList } from "./UrgenciasList"
 import "../../assets/styles/admin.css"
 import { CitasList } from "./CitasList"
+import { adminContext } from "./context/adminContext"
 
 export const AdminHome = () => {
-	const [data1, setData1] = useState()
+	const [selected, setSelected] = useState("date")
+	const handleSelected = selection => {
+		setSelected(selection)
+	}
 
-	// context.dispatch()
-
-	useEffect(() => {
-		getDataList(apiUrl.emergency).then(data => setData1(data.data))
-	}, [])
+	const { adminInfo } = useContext(adminContext)
 
 	return (
-		<div style={{ textAlign: "center" }}>
+		<>
 			<LanguageSelector />
 
-			<section className='home' style={{ marginBottom: "100px" }}>
+			<section className='home'>
 				<div className='title-cont'>
-					<h1 className='title'>Administración</h1>
-					<hr />
+					<h1 className='title-admin'>Gestiona las peticiones pendientes</h1>
 				</div>
-				<div className='dashboard'>
-					<div className='dashboard-container'>
-						<h2>Emergencias por tramitar</h2>
-						<UrgenciasList />
+
+				<section className='admin-btn-cont'>
+					<div
+						className='admin-btn emergency'
+						onClick={() => handleSelected("emer")}>
+						<h1>Emergencias </h1>
+						{
+							<h1 className='quantity-alert'>{`${adminInfo?.emergency.emergency.length}`}</h1>
+						}
 					</div>
-					<div className='dashboard-container'>
-						<h2>citas por tramitar</h2>
-						<CitasList />
+
+					<div
+						className='admin-btn emergency'
+						onClick={() => handleSelected("date")}>
+						<h1>Citas</h1>
+						{
+							<h1 className='quantity-alert'>{`${adminInfo?.appointment.appointment.length}`}</h1>
+						}
 					</div>
-				</div>
+				</section>
+
+				{selected === "emer" && (
+					<div className='dashboard'>
+						{" "}
+						<div className='dashboard-container'>
+							{/* <h2>Emergencias por tramitar</h2> */}
+							<UrgenciasList />
+						</div>
+					</div>
+				)}
+				{selected === "date" && (
+					<div className='dashboard'>
+						{" "}
+						<div className='dashboard-container'>
+							{/* <h2>Citas por tramitar</h2> */}
+							<CitasList />
+						</div>{" "}
+					</div>
+				)}
 			</section>
-		</div>
+		</>
 	)
 }

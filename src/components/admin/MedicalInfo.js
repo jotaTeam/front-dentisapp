@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 
 const MedicalInfo = ({ medicalInfo }) => {
 	const { cause, simptom } = medicalInfo
@@ -7,7 +7,6 @@ const MedicalInfo = ({ medicalInfo }) => {
 	const simptoms = Object.keys(simptom).filter(
 		property => cause[property] === true
 	)
-	console.log(causes)
 
 	const [info, setInfo] = useState(false)
 
@@ -17,7 +16,7 @@ const MedicalInfo = ({ medicalInfo }) => {
 		<div
 			className={info ? "medical_info" : "hidden"}
 			onClick={() => setInfo(!info)}>
-			{!anyProblem && <p>Esta limpio</p>}
+			{!anyProblem && <p>No problem here</p>}
 
 			{anyProblem && (
 				<p>
